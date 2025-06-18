@@ -74,21 +74,21 @@ def main():
     </div>
     """, unsafe_allow_html=True)
 
-RACE = st.selectbox(
-    "Race (Mexican American = 1, Other Hispanic = 2, Non-Hispanic White = 3, Non-Hispanic Black = 4, Other race = 5)",
-    ["", 1, 2, 3, 4, 5],      # 第 0 个为空白占位
-    index=0
-)
+    RACE = st.selectbox(
+        "Race (Mexican American = 1, Other Hispanic = 2, Non-Hispanic White = 3, Non-Hispanic Black = 4, Other race = 5)",
+        ["", 1, 2, 3, 4, 5],      # 第 0 个为空白占位
+        index=0
+    )
 
-BMI = st.number_input("BMI (kg/m²)", value=None, placeholder="Enter BMI")
+    BMI = st.number_input("BMI (kg/m²)", value=None, placeholder="Enter BMI")
 
-AGE = st.number_input("Age (years)", value=None, placeholder="Enter age")
+    AGE = st.number_input("Age (years)", value=None, placeholder="Enter age")
 
-C4_0 = st.number_input(
-    "Dietary C4:0 fatty acid intake (g/day)",
-    value=None,
-    placeholder="Enter value"
-)
+    C4_0 = st.number_input(
+        "Dietary C4:0 fatty acid intake (g/day)",
+        value=None,
+        placeholder="Enter value"
+    )
 
 
     if st.button(label="Submit"):
