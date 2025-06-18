@@ -81,27 +81,27 @@ def main():
     """, unsafe_allow_html=True)
 
     RACE = st.selectbox(
-        "Race (Mexican American = 1, Other Hispanic = 2, Non-Hispanic White = 3, Non-Hispanic Black = 4, Other race = 5)",
-        ["", 1, 2, 3, 4, 5],      # 第 0 个为空白占位
-        index=0
+    "Race (1=Mexican American, 2=Other Hispanic, 3=Non-Hispanic White, 4=Non-Hispanic Black, 5=Other)",
+    ("", 1, 2, 3, 4, 5),          # 空字符串作为占位
+    index=0,
+    key="race"
     )
 
-    BMI = st.number_input("BMI (kg/m²)", value=None, placeholder="Enter BMI")
+    BMI = st.text_input("BMI (kg/m²)",      placeholder="Enter BMI",  key="bmi")
+    AGE = st.text_input("Age (years)",       placeholder="Enter age", key="age")
+    C4_0 = st.text_input("C4:0 FA intake (g/day)", placeholder="Enter value", key="c4_0")
 
-    AGE = st.number_input("Age (years)", value=None, placeholder="Enter age")
+    # ----------- 提交按钮 -----------
+    if st.button("Submit"):
+        if RACE and BMI and AGE and C4_0:
+            user = Subject(float(AGE), float(BMI), int(RACE), float(C4_0))
+            user.make_predict()
+        else:
+            st.warning("Please complete all fields before submitting.")
 
-    C4_0 = st.number_input(
-        "Dietary C4:0 fatty acid intake (g/day)",
-        value=None,
-        placeholder="Enter value"
-    )
-
-
-    if st.button(label="Submit"):
-        user = Subject(AGE, BMI, RACE, C4_0)
-        user.make_predict()
-
+# ----------- 重置按钮 -----------
     if st.button("Reset all inputs"):
-        st.session_state.clear()        
-        st.experimental_rerun()  
+        for k in ("race", "bmi", "age", "c4_0"):
+            st.session_state[k] = ""      # 清空各字段
+        st.experimental_rerun()
 main()
