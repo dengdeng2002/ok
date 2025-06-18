@@ -63,19 +63,32 @@ def main():
         Developed by: Deng <i>et&nbsp;al.</i><br>
         Contact: dengcy0758@163.com<br><br>
 
-        <b>Terms of Use</b><br>
-        This tool is for research use only.&nbsp;It is not intended for clinical diagnosis or treatment decision-making.<br>
-        The model was trained on individuals aged&nbsp;20–79&nbsp;years.<br><br>
+        Terms of Use
+        This tool is for research use only.
+        It is not intended for clinical diagnosis or treatment decision-making.
+        The model was trained on individuals aged 20–79&nbsp years.
 
-        <b>Data Privacy</b><br>
-        No input data is stored on the server.&nbsp;All inputs are processed only temporarily and not used for any other purposes.
+        Data Privacy
+        No input data is stored on the server.
+        All inputs are processed only temporarily and not used for any other purposes.
     </div>
     """, unsafe_allow_html=True)
 
-    RACE = st.selectbox("Race (Mexican American = 1, Other Hispanic = 2, Non-Hispanic White = 3, Non-Hispanic Black = 4, Other race = 5)", [1,2,3,4,5], index=3)
-    BMI = st.number_input("BMI (kg/m^2)", value=24.51)
-    AGE = st.number_input("Age (years)", value=48)
-    C4_0 =st.number_input("dietary C4:0 fatty acid intake (g/day)", value=2.411)
+RACE = st.selectbox(
+    "Race (Mexican American = 1, Other Hispanic = 2, Non-Hispanic White = 3, Non-Hispanic Black = 4, Other race = 5)",
+    ["", 1, 2, 3, 4, 5],      # 第 0 个为空白占位
+    index=0
+)
+
+BMI = st.number_input("BMI (kg/m²)", value=None, placeholder="Enter BMI")
+
+AGE = st.number_input("Age (years)", value=None, placeholder="Enter age")
+
+C4_0 = st.number_input(
+    "Dietary C4:0 fatty acid intake (g/day)",
+    value=None,
+    placeholder="Enter value"
+)
 
 
     if st.button(label="Submit"):
