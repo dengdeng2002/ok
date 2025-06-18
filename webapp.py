@@ -42,9 +42,15 @@ def main():
             """, unsafe_allow_html=True)
 
             explainer = shap.Explainer(best_model)
-            shap_values = explainer.shap_values(df_subject)
+            shap_values = explainer (df_subject)
             # 力图
-            shap.force_plot(explainer.expected_value[1], shap_values[1][0, :], df_subject.iloc[0, :], matplotlib=True)
+            #shap.force_plot(explainer.expected_value[1], shap_values[1][0, :], df_subject.iloc[0, :], matplotlib=True)
+            shap.force_plot(                          # 兼容性调用
+                shap_values.base_values[0],           # 取第 1 条样本的基线
+                shap_values.values[0],                # 取对应 SHAP 向量
+                df_subject.iloc[0, :],
+                matplotlib=True
+            )
             # 瀑布图
             # ex = shap.Explanation(shap_values[1][0, :], explainer.expected_value[1], df_subject.iloc[0, :])
             # shap.waterfall_plot(ex)
@@ -66,7 +72,7 @@ def main():
         Terms of Use
         This tool is for research use only.
         It is not intended for clinical diagnosis or treatment decision-making.
-        The model was trained on individuals aged 20–79&nbsp years.
+        The model was trained on individuals aged 20–79 years.
 
         Data Privacy
         No input data is stored on the server.
