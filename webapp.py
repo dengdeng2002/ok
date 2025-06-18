@@ -81,27 +81,35 @@ def main():
     """, unsafe_allow_html=True)
 
     RACE = st.selectbox(
-    "Race (1=Mexican American, 2=Other Hispanic, 3=Non-Hispanic White, 4=Non-Hispanic Black, 5=Other)",
-    ("", 1, 2, 3, 4, 5),          # 空字符串作为占位
-    index=0,
-    key="race"
-    )
+        "Race (1=Mexican American, 2=Other Hispanic, 3=Non-Hispanic White, 4=Non-Hispanic Black, 5=Other)",
+        ("", 1, 2, 3, 4, 5),        # 第 0 个为空占位
+        index=0,
+        key="race"
+        )
 
-    BMI = st.text_input("BMI (kg/m²)",      placeholder="Enter BMI",  key="bmi")
-    AGE = st.text_input("Age (years)",       placeholder="Enter age", key="age")
-    C4_0 = st.text_input("C4:0 FA intake (g/day)", placeholder="Enter value", key="c4_0")
+    BMI = st.text_input("BMI (kg/m²)",  placeholder="Enter BMI",  key="bmi")
+    AGE = st.text_input("Age (years)",   placeholder="Enter age", key="age")
+    C4_0 = st.text_input("C4:0 FA intake (g/day)",
+                     placeholder="Enter value", key="c4_0")
 
-    # ----------- 提交按钮 -----------
+# ---------- 提交按钮 ----------
     if st.button("Submit"):
-        if RACE and BMI and AGE and C4_0:
-            user = Subject(float(AGE), float(BMI), int(RACE), float(C4_0))
+        if all(st.session_state[k] for k in ("race", "bmi", "age", "c4_0")):
+            user = Subject(
+                AGE=float(st.session_state["age"]),
+                BMI=float(st.session_state["bmi"]),
+                RACE=int(st.session_state["race"]),
+                C4_0=float(st.session_state["c4_0"])
+            )
             user.make_predict()
-        else:
-            st.warning("Please complete all fields before submitting.")
+    else:
+        st.warning("Please complete all fields before submitting.")
 
-# ----------- 重置按钮 -----------
-    if st.button("Reset all inputs"):
+# ---------- 重置按钮 ----------
+    def reset_fields():
         for k in ("race", "bmi", "age", "c4_0"):
-            st.session_state[k] = ""      # 清空各字段
-        st.experimental_rerun()
+            st.session_state[k] = ""      # 设为空
+    # 不需要手动 rerun；Streamlit 会在回调结束后自动刷新
+
+    st.button("Reset all inputs", on_click=reset_fields)
 main()
