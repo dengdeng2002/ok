@@ -63,22 +63,25 @@ def main():
                     <p class='intro'></p>
                 </div>
                 """, unsafe_allow_html=True)
-    st.markdown("""
+    st.markdown(
+    """
     <div style='font-size:14px; line-height:1.5; color:#6c757d;'>
-        <b>Acknowledgments</b><br>
-        Developed by: Deng <i>et&nbsp;al.</i><br>
-        Contact: dengcy0758@163.com<br><br>
+    <b>Acknowledgments</b><br>
+    Developed by: Deng <i>et&nbsp;al.</i><br>
+    Contact: dengcy0758@163.com<br><br>
 
-        <b>Terms of Use</b><br>
-        This tool is for research use only.<br>
-        It is not intended for clinical diagnosis or treatment decision-making.<br>
-        The model was trained on individuals aged&nbsp;20–79&nbsp;years.<br><br>
+    <b>Terms of Use</b><br>
+    This tool is for research use only.<br>
+    It is not intended for clinical diagnosis or treatment decision-making.<br>
+    The model was trained on individuals aged&nbsp;20–79&nbsp;years.<br><br>
 
-        <b>Data Privacy</b><br>
-        No input data is stored on the server.<br>
-        All inputs are processed only temporarily and not used for any other purposes.
+    <b>Data Privacy</b><br>
+    No input data is stored on the server.<br>
+    All inputs are processed only temporarily and not used for any other purposes.
     </div>
-    """, unsafe_allow_html=True)
+    """,
+    unsafe_allow_html=True
+    )
 
     RACE = st.selectbox(
         "Race (1=Mexican American, 2=Other Hispanic, 3=Non-Hispanic White, 4=Non-Hispanic Black, 5=Other)",
