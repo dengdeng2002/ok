@@ -69,13 +69,13 @@ def main():
         Developed by: Deng <i>et&nbsp;al.</i><br>
         Contact: dengcy0758@163.com<br><br>
 
-        Terms of Use
-        This tool is for research use only.
-        It is not intended for clinical diagnosis or treatment decision-making.
-        The model was trained on individuals aged 20–79 years.
+        <b>Terms of Use</b><br>
+        This tool is for research use only.<br>
+        It is not intended for clinical diagnosis or treatment decision-making.<br>
+        The model was trained on individuals aged&nbsp;20–79&nbsp;years.<br><br>
 
-        Data Privacy
-        No input data is stored on the server.
+        <b>Data Privacy</b><br>
+        No input data is stored on the server.<br>
         All inputs are processed only temporarily and not used for any other purposes.
     </div>
     """, unsafe_allow_html=True)
