@@ -66,6 +66,7 @@ def main():
     st.markdown(
     """
     <div style='font-size:14px; line-height:1.5; color:#6c757d;'>
+    <b>A Web-based calculator that predicts the prevalence of PRISm from demographic details and dietary fatty acid intake.</b><br>
     <b>Acknowledgments</b><br>
     Developed by: Deng <i>et&nbsp;al.</i><br>
     Contact: dengcy0758@163.com<br><br>
